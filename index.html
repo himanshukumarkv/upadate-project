@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CashFlow Compass</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>CashFlow Compass 💰</h1>
+
+  <div class="toggle-mode">
+    <button id="themeToggle" onclick="toggleTheme()">🌗 Toggle Dark/Light Mode</button>
+    <input type="color" id="themeColor" title="Pick a theme color" />
+  </div>
+
+  <div class="input-section">
+    <h2>Enter Your Details</h2>
+    <form id="financeForm">
+      <label>💼 Income (₹): <input type="number" id="income" min="0" required /></label>
+      <label>📚 Education (₹): <input type="number" id="education" min="0" required /></label>
+      <label>🏠 Rent + Electricity (₹): <input type="number" id="houseRent" min="0" required /></label>
+      <label>🚌 Transport (₹): <input type="number" id="transportCost" min="0" required /></label>
+      <label>🍽️ Food (₹): <input type="number" id="foodCost" min="0" required /></label>
+      <label>📈 Extra Cashflow (±₹): <input type="number" id="extraCashflow" /></label>
+      <label>📅 Entry Date: <input type="date" id="entryDate" /></label>
+      <button type="submit">Calculate 💹</button>
+    </form>
+  </div>
+
+  <div class="data-section">
+    <h2>💡 Result</h2>
+    <p id="result"></p>
+    <div class="progress-wrapper">
+      <label>💾 Savings Rate:</label>
+      <progress id="savingsBar" value="0" max="100"></progress>
+    </div>
+    <button onclick="downloadPDF()">📄 Download PDF</button>
+    <button onclick="copyResult()">📋 Copy Result</button>
+    <button onclick="shareByEmail()">📧 Share via Email</button>
+    <button onclick="resetForm()">🔄 Refresh</button>
+  </div>
+
+  <div class="data-section">
+    <button onclick="exportData()">⬇️ Export Data</button>
+    <input type="file" id="importFile" accept="application/json" onchange="importData(event)" />
+  </div>
+
+  <div id="investmentSuggestions" class="data-section"></div>
+  <div id="financialAdvice" class="data-section"></div>
+
+  <div class="charts">
+    <canvas id="expenseChart" width="400" height="300"></canvas>
+    <canvas id="netChart" width="400" height="300"></canvas>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</body>
+</html>
